@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import routes from 'routes';
 import * as serviceWorker from './serviceWorker';
+import { renderRoutes } from 'react-router-config';
+
+import store from 'store';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Suspense fallback={<h1>Загрузка...</h1>}>{renderRoutes(routes)}</Suspense>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
