@@ -1,5 +1,4 @@
 import models from './models';
 
-export default {
-  models
-}
+
+export default { models };
