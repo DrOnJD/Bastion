@@ -1,13 +1,18 @@
 import React from 'react';
-import { useDispatch } from 'asd';
-import actions from 'actions';
-import { User } from 'models';
+import { useSelector } from 'react-redux';
+
+import { useDispatch } from 'store/reduxModels';
+import actions from 'store/actions';
+import { User, Post } from 'store/models';
+import { selectModel } from 'store/selectors/models';
 
 function App() {
-  console.log(User.modelName)
-  useDispatch(actions.add, User, { name: 'Вася', id: 0  })
-  useDispatch(actions.update, User, { name: 'Олег', id: 0  })
-  useDispatch(actions.delete, User, { id: 0 })
+  useDispatch(actions.add, User, { name: 'Вася', id: 0, postsIds: [0, 1, 2], postId: 2 });
+  useDispatch(actions.add, Post, { id: 0, content: 'asd1' });
+  useDispatch(actions.add, Post, { id: 1, content: 'asd2' });
+  useDispatch(actions.add, Post, { id: 2, content: 'asd3' });
+  const asd = useSelector(selectModel(User, 0));
+  console.log(asd)
   return 'App';
 }
 

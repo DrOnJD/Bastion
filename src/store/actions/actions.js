@@ -1,4 +1,4 @@
-import { createAction } from 'asd';
+import { createAction } from '../reduxModels';
 
 
 export default {
