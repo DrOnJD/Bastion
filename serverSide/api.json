@@ -1,0 +1,32 @@
+{
+  "users": [{
+    "id": 0,
+    "name": "Вася",
+    "postsIds": [0, 1, 2]
+  }, {
+    "id": 1,
+    "name": "Федя",
+    "postId": 1
+  }, {
+    "id": 2,
+    "name": "Иван"
+  }, {
+    "id": 3,
+    "name": "Ибрагим",
+    "user-name": "Ибрагим"
+  }],
+  "posts": [{
+    "id": 0,
+    "content": "asd"
+  }, {
+    "id": 1,
+    "content": "asd"
+  }, {
+    "id": 2,
+    "content": "asd"
+  }, {
+    "id": 3,
+    "content": "asd",
+    "post-name": "name"
+  }]
+}

@@ -1,15 +1,12 @@
-import assign from 'lodash/assign';
+import PostApi from 'store/api/Post';
 
-import Base from 'store/reduxModels/Model';
+import Base from './Base';
 
 
 class Post extends Base {
-  static modelName = 'Post';
+  static api = PostApi;
 
-  constructor(props) {
-    super(props);
-    assign(this, props);
-  }
+  static modelName = 'Post';
 }
 
 export default Post;

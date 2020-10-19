@@ -10,7 +10,8 @@
     "@testing-library/user-event": "7.1.2",
     "@typescript-eslint/eslint-plugin": "2.10.0",
     "@typescript-eslint/parser": "2.10.0",
-    "airbnb": "^0.0.2",
+    "airbnb": "0.0.2",
+    "axios": "0.20.0",
     "babel-eslint": "10.1.0",
     "babel-jest": "24.9.0",
     "babel-loader": "8.1.0",
@@ -22,6 +23,7 @@
     "directory-named-webpack-plugin": "4.0.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
+    "eslintrc": "^1.0.6",
     "file-loader": "4.3.0",
     "fs-extra": "8.1.0",
     "html-webpack-plugin": "4.0.0-beta.11",
@@ -34,6 +36,7 @@
     "lodash": "4.17.20",
     "mini-css-extract-plugin": "0.9.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
+    "path-to-regexp": "^6.2.0",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-input-range": "4.0.0",
@@ -42,6 +45,7 @@
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
     "postcss-scrollbar": "0.3.0",
+    "qs": "^6.9.4",
     "react": "16.13.1",
     "react-app-polyfill": "1.0.6",
     "react-dev-utils": "10.2.1",
@@ -71,7 +75,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "backend": "cd serverSide && json-server api.json --port 8080 --routes routes.json --watch"
   },
   "browserslist": {
     "production": [
@@ -135,20 +140,6 @@
       "jest-watch-typeahead/testname"
     ]
   },
-  "lint-staged": {
-    "src/**/*.js": [
-      "./node_modules/.bin/eslint --max-warnings=0",
-      "git add"
-    ],
-    "src/**/*.css": [
-      "./node_modules/.bin/stylelint --max-warnings=0",
-      "git add"
-    ]
-  },
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 8
-  },
   "babel": {
     "presets": [
       "react-app"
@@ -165,5 +156,6 @@
     "eslint-plugin-only-warn": "^1.0.2",
     "eslint-plugin-react": "7.19.0",
     "eslint-plugin-react-hooks": "1.6.1"
-  }
+  },
+  "proxy": "http://localhost:8080/"
 }

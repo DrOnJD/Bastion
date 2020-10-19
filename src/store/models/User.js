@@ -1,10 +1,12 @@
-import assign from 'lodash/assign';
-
-import Base from 'store/reduxModels/Model';
+import UserApi from 'store/api/User';
 import { Post } from 'store/models';
+
+import Base from './Base';
 
 
 class User extends Base {
+  static api = UserApi;
+
   static modelName = 'User';
 
   dependencies() {
@@ -12,11 +14,6 @@ class User extends Base {
       { model: Post, from: 'postsIds', to: 'posts' },
       { model: Post, from: 'postId', to: 'post' },
     ];
-  }
-
-  constructor(props) {
-    super(props);
-    assign(this, props);
   }
 }
 
