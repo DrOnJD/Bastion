@@ -8,7 +8,7 @@ const createAction = (type) => {
   return actionCreator;
 };
 
-const initState = (models) => models.reduce((prev, model) => ({ ...prev, [model.name]: {} }), {});
+const initState = (models) => models.reduce((prev, model) => ({ ...prev, [model.name]: { items: {}, meta: {} } }), {});
 
 export {
   createAction,

@@ -1,11 +1,11 @@
 import store from 'store';
-import Model from 'store/reduxModels/Model';
+import Model from 'store/reduxModels/model';
 
 
 class Base extends Model {
   static modelName = 'Base';
 
-  get __store() {
+  get _store() {
     return store.getState();
   }
 }

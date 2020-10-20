@@ -7,17 +7,25 @@ import actions from '../actions';
 
 
 const models = handleActions({
-  [actions.add]: (state, { model: Model, payload }) => produce(state, ({ [Model.name]: modelsMap }) => {
-    modelsMap[payload.id] = new Model(payload);
+  [actions.add]: (state, { model: Model, payload, meta }) => produce(state, ({ [Model.name]: modelsData }) => {
+    modelsData.items[payload.id] = new Model(payload);
+    modelsData.meta = { ...modelsData.meta, ...meta };
   }),
-  [actions.addList]: (state, { model: Model, payload }) => produce(state, ({ [Model.name]: modelsMap }) => {
-    payload.forEach((item) => { modelsMap[item.id] = new Model(item); });
+  [actions.addList]: (state, { model: Model, payload, meta }) => produce(state, ({ [Model.name]: modelsData }) => {
+    payload.forEach((item) => { modelsData.items[item.id] = new Model(item); });
+    modelsData.meta = { ...modelsData.meta, ...meta };
+  }),
+  [actions.deleteMeta]: (state, { model: Model }) => produce(state, ({ [Model.name]: modelsData }) => {
+    modelsData.meta = {};
+  }),
+  [actions.deleteItem]: (state, { model: Model, payload }) => produce(state, ({ [Model.name]: modelsData }) => {
+    delete modelsData.meta[payload];
   }),
   [actions.delete]: (state, { payload }) => produce(state, ({ [payload.constructor.modelName]: modelMap }) => {
-    delete modelMap[payload.id];
+    delete modelMap.items[payload.id];
   }),
   [actions.deleteList]: (state, { payload }) => produce(state, ({ [payload.constructor.modelName]: modelsMap }) => {
-    payload.forEach((item) => { delete modelsMap[item.id]; });
+    payload.forEach((item) => { delete modelsMap.items[item.id]; });
   }),
 },
 initState(modelsList));

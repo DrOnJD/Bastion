@@ -7,18 +7,18 @@ import snakeCase from 'lodash/snakeCase';
 import { selectModel } from 'store/selectors/models';
 
 
-class Model {
+export default class Model {
   constructor(props) {
     assign(this, this.transformData(props, 'camel'));
     ((this.dependencies || noop)() || []).forEach(this.defineDependency.bind(this));
   }
 
   defineDependency({ model, from, to }) {
-    if (!this[from]) return;
+    if (this[from] === undefined) return;
     Object.defineProperty(this, to, {
       get: () => isArray(this[from])
-        ? this[from].map((id) => selectModel(model, id)(this.__store))
-        : selectModel(model, this[from])(this.__store),
+        ? this[from].map((id) => selectModel(model, id)(this._store))
+        : selectModel(model, this[from])(this._store),
     });
   }
 
@@ -28,5 +28,3 @@ class Model {
     return data;
   }
 }
-
-export default Model;

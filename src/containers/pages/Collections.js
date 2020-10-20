@@ -1,8 +1,8 @@
-// import React from 'react';
+import Access from 'containers/Access';
 
 
-function App() {
+function Collections() {
   return 'Collections';
 }
 
-export default App;
+export default Access('Root')(Collections);
