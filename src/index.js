@@ -14,9 +14,11 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Layout>
-        <Suspense fallback={<h1>Загрузка...</h1>}>{renderRoutes(routes)}</Suspense>
-      </Layout>
+      <Suspense fallback={<h1>Загрузка...</h1>}>
+        <Layout>
+          <Suspense fallback={<h1>Загрузка...</h1>}>{renderRoutes(routes)}</Suspense>
+        </Layout>
+      </Suspense>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'),

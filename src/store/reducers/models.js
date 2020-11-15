@@ -27,6 +27,12 @@ const models = handleActions({
   [actions.deleteList]: (state, { payload }) => produce(state, ({ [payload.constructor.modelName]: modelsMap }) => {
     payload.forEach((item) => { delete modelsMap.items[item.id]; });
   }),
+  [actions.addMeta]: (state, { model: Model, payload: meta }) => produce(state, ({ [Model.name]: modelsData }) => {
+    modelsData.meta = { ...modelsData.meta, ...meta };
+  }),
+  [actions.addRemove]: (state, { model: Model, payload: metaName }) => produce(state, ({ [Model.name]: modelsData }) => {
+    delete modelsData.meta[metaName];
+  }),
 },
 initState(modelsList));
 

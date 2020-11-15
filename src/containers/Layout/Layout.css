@@ -5,22 +5,20 @@
   margin: 0;
 }
 
+:global #root {
+  display: flex;
+  flex-basis: 100%;
+}
+
 .layout {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
 
-  & header {
-  
-  }
-  
   & .content {
-    flex-basis: 100%;
-    display: flex;
-  }
-  
-  & footer {
-  
+    flex-basis: calc(100% - 50px);
+    margin-top: 50px;
+    background-color: #aaa;
+    padding: 15px;
   }
 }
