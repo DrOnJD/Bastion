@@ -1,0 +1,26 @@
+:global html,
+:global body,
+:global #root {
+  height: 100%;
+  margin: 0;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  & header {
+  
+  }
+  
+  & .content {
+    flex-basis: 100%;
+    display: flex;
+  }
+  
+  & footer {
+  
+  }
+}

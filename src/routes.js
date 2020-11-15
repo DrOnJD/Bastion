@@ -1,25 +1,29 @@
 import { lazy } from 'react';
+import { matchPath } from 'react-router';
+
+import { roles } from 'store/constants';
 
 
-export const INDEX = {
+const routes = [{
   path: '/',
   name: 'Главная',
   exact: true,
   component: lazy(() => import('containers/pages/Index')),
-};
-
-export const COLLECTIONS = {
+  roles: [roles.root, roles.admin, roles.user, roles.guest],
+}, {
   path: '/collections',
   component: lazy(() => import('containers/pages/Collections')),
-};
-
-export const ERROR404 = {
-  path: '/',
+  roles: [roles.root, roles.admin],
+}, {
+  path: '*',
   component: lazy(() => import('containers/pages/Error404')),
+}];
+
+
+const getCurrentRoute = (pathname) => routes.find((route) => matchPath(pathname, route));
+
+export {
+  getCurrentRoute,
 };
 
-export default [
-  COLLECTIONS,
-  INDEX,
-  ERROR404,
-];
+export default routes;

@@ -6,6 +6,7 @@ import routes from 'routes';
 import { renderRoutes } from 'react-router-config';
 
 import store from 'store';
+import Layout from 'containers/Layout';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -13,7 +14,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Suspense fallback={<h1>Загрузка...</h1>}>{renderRoutes(routes)}</Suspense>
+      <Layout>
+        <Suspense fallback={<h1>Загрузка...</h1>}>{renderRoutes(routes)}</Suspense>
+      </Layout>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
