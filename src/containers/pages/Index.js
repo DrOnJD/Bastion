@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import actions from 'store/actions';
-import { Session, User, Post } from 'store/models';
+import actions from 'store/actions/models';
+import { Session, User, Model } from 'store/models';
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   useEffect(() => { if (id) dispatch(actions.get(Session, { id }, { current: +id })); }, [dispatch, id]);
   useEffect(() => {
     dispatch(actions.get(User));
-    dispatch(actions.get(Post));
+    dispatch(actions.get(Model));
   }, [dispatch]);
 
   return (

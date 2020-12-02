@@ -1,5 +1,5 @@
 import UserApi from 'store/api/User';
-import { Post } from 'store/models';
+import { Model } from 'store/models';
 
 import Base from './Base';
 
@@ -11,8 +11,8 @@ class User extends Base {
 
   dependencies() {
     return [
-      { model: Post, from: 'postsIds', to: 'posts' },
-      { model: Post, from: 'postId', to: 'post' },
+      { model: Model, from: 'postsIds', to: 'posts' },
+      { model: Model, from: 'postId', to: 'post' },
     ];
   }
 }

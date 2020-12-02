@@ -11,14 +11,13 @@ export default class BaseApi {
 
   api = 'api';
 
-  getUrl({ id, ...params }) {
+  getUrl({ id, ...params } = {}) {
     const queryString = !isEmpty(params) ? `?${new URLSearchParams(params).toString()}` : '';
     return `${this.api}/v${this.version}/${compile(this.baseUrl)({ id, ...params })}${queryString}`;
   }
 
   async post(model, headers) {
     const res = await this.handler.post(this.getUrl(), model, { headers });
-
     return res;
   }
 

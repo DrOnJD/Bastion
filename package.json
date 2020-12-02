@@ -19,12 +19,14 @@
     "babel-preset-react-app": "9.1.2",
     "camelcase": "5.3.1",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "class-names": "^1.0.0",
     "css-loader": "3.4.2",
     "directory-named-webpack-plugin": "4.0.1",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslintrc": "^1.0.6",
     "file-loader": "4.3.0",
+    "formik": "^2.2.5",
     "fs-extra": "8.1.0",
     "html-webpack-plugin": "4.0.0-beta.11",
     "identity-obj-proxy": "3.0.0",
@@ -35,6 +37,7 @@
     "jest-watch-typeahead": "0.4.2",
     "lodash": "4.17.20",
     "mini-css-extract-plugin": "0.9.0",
+    "nodemon": "^2.0.6",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "path-to-regexp": "^6.2.0",
     "pnp-webpack-plugin": "1.6.4",
@@ -77,7 +80,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "backend": "cd serverSide && json-server api.json --port 8080 --routes routes.json --watch"
+    "server": "NODE_ENV=dev nodemon back/index1.js"
   },
   "browserslist": {
     "production": [

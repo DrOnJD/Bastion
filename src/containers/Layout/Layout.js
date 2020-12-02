@@ -3,11 +3,11 @@ import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { node } from 'prop-types';
 
-import actions from 'store/actions';
-import { selectCurrentSession } from 'store/selectors/session';
-import { Session } from 'store/models';
+import Notifications from 'containers/Notifications/Notifications';
 import { getCurrentRoute } from 'routes';
-
+import { selectCurrentSession } from 'store/selectors/session';
+import actions from 'store/actions/models';
+import { Session } from 'store/models/models';
 import Error404 from 'containers/pages/Error404';
 
 import Header from './Header';
@@ -15,18 +15,19 @@ import styles from './Layout.css';
 
 
 const Layout = ({ children }) => {
-  const id = 0;
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  useEffect(() => { dispatch(actions.get(Session, { id }, { current: +id })); }, [dispatch, id]);
   const session = useSelector(selectCurrentSession);
-  const { roles } = getCurrentRoute(pathname);
+  const route = getCurrentRoute(pathname);
 
-  return session && roles.includes(session.role)
+  useEffect(() => { dispatch(actions.get(Session)); }, [dispatch]);
+
+  return (session && route.roles?.includes(session.role)) || (route && !route.roles)
     ? (
       <div className={styles.layout}>
         <Header />
         <div className={styles.content}>{children}</div>
+        <Notifications />
       </div>
     )
     : <Error404 />;

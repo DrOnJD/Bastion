@@ -1,14 +1,17 @@
 import User from './User';
-import Post from './Post';
+import Model from './Model';
 import Session from './Session';
+import Notification from './Notification';
 
 
 export { default as User } from './User';
-export { default as Post } from './Post';
+export { default as Model } from './Model';
 export { default as Session } from './Session';
+export { default as Notification } from './Notification';
 
 export default [
   User,
-  Post,
+  Model,
   Session,
+  Notification,
 ];

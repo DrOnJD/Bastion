@@ -1,0 +1,43 @@
+.tagline {
+  display: flex;
+  margin-bottom: 10px;
+
+  & .tag {
+    padding: 2px 10px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    position: relative;
+
+    & .close {
+      width: 15px;
+      height: 15px;
+      background-color: white;
+      border: 1px solid #ccc;
+      position: absolute;
+      top: -9px;
+      right: -9px;
+      border-radius: 50%;
+      cursor: pointer;
+
+      & > div {
+        height: 9px;
+        width: 1px;
+        background-color: black;
+        Z-index: 1;
+        margin-left: 7px;
+      }
+
+      & .first {
+        transform: rotate(45deg);
+        margin-top: 3px;
+      }
+
+      & .second {
+        transform: rotate(135deg);
+        margin-top: -9px;
+      }
+    }
+  }
+}
