@@ -1,55 +1,60 @@
 header {
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  background-color: #ff8d00;
-  color: #333;
   position: fixed;
   width: 100%;
 
-  &>div {
+  & .top {
+    height: 50px;
     display: flex;
-    align-items: center;
-  }
+    justify-content: space-between;
+    background-color: #ff8d00;
+    color: #333;
 
-  & .logo {
-    margin-left: 15px;
-    ;
-  }
-
-  & .search {
-    position: relative;
-
-    & input {
-      width: 500px;
-      height: 25px;
-      border-radius: 3px;
-      border: 1px solid rgba(100, 100, 100, 0.5);
-      outline: none;
-      padding: 0 10px;
+    & > div {
+      display: flex;
+      align-items: center;
     }
 
-    & .options {
-      position: absolute;
-      top: calc(100% - 10px);
-      width: 100%;
-      background-color: #fff;
-      border-radius: 3px;
+    & .logo {
+      margin-left: 15px;
+    }
 
-      & .option {
-        padding: 2px 10px;
-        border-bottom: 1px solid #ddd;
-        cursor: pointer;
+    & .search {
+      position: relative;
 
-        &:last-child {
-          border-bottom: 0px;
+      & input {
+        width: 500px;
+        height: 25px;
+        border-radius: 3px;
+        border: 1px solid rgba(100, 100, 100, 0.5);
+        outline: none;
+        padding: 0 15px;
+      }
+
+      & .options {
+        position: absolute;
+        top: calc(100% - 10px);
+        width: 100%;
+        background-color: #fff;
+        border-radius: 3px;
+
+        & .option {
+          padding: 10px 15px;
+          border-bottom: 1px solid #ddd;
+          cursor: pointer;
+
+          &:last-child {
+            border-bottom: 0px;
+          }
         }
       }
     }
+
+    & .userMenu {
+      margin-right: 15px;
+    }
   }
 
-  & .userMenu {
-    margin-right: 15px;
-    ;
+  & .bottom {
+    margin: 10px 15px;
   }
 }

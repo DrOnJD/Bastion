@@ -1,3 +1,4 @@
+import TagLine from 'components/TagLine/TagLine';
 import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -22,27 +23,32 @@ const Header = () => {
   }, [dispatch]);
   return (
     <header>
-      <div className={styles.logo}>logo</div>
-      <div className={styles.search}>
-        <input
-          type="text"
-          placeholder="#tag"
-          value={value}
-          onClick={handleClickInput}
-          onChange={handleChangeInput}
-          onKeyDown={handleKeydownInput}
-        />
-        {isOptionsView && (
-          <div className={styles.options}>
-            {tags
-              .filter((tag) => tag.toLowerCase().includes(value.toLowerCase()))
-              .map((tag, i) => (
-                <div key={i} data-tag={tag} className={styles.option} onClick={handleClickTag}>{tag}</div> /* eslint-disable-line */
-              ))}
-          </div>
-        )}
+      <div className={styles.top}>
+        <div className={styles.logo}>logo</div>
+        <div className={styles.search}>
+          <input
+            type="text"
+            placeholder="#tag"
+            value={value}
+            onClick={handleClickInput}
+            onChange={handleChangeInput}
+            onKeyDown={handleKeydownInput}
+          />
+          {isOptionsView && (
+            <div className={styles.options}>
+              {tags
+                .filter((tag) => tag.toLowerCase().includes(value.toLowerCase()))
+                .map((tag, i) => (
+                  <div key={i} data-tag={tag} className={styles.option} onClick={handleClickTag}>{tag}</div> /* eslint-disable-line */
+                ))}
+            </div>
+          )}
+        </div>
+        <div className={styles.userMenu}>menu</div>
       </div>
-      <div className={styles.userMenu}>menu</div>
+      <div className={styles.bottom}>
+        <TagLine />
+      </div>
     </header>
   );
 };

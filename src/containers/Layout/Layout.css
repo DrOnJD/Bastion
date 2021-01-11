@@ -19,6 +19,6 @@
     flex-basis: calc(100% - 50px);
     margin-top: 50px;
     background-color: #aaa;
-    padding: 15px;
+    padding: 30px 15px;
   }
 }

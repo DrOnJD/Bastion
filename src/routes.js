@@ -15,8 +15,8 @@ const routes = [{
   component: lazy(() => import('containers/pages/Collections')),
   roles: [roles.root, roles.admin],
 }, {
-  path: '/auth',
-  component: lazy(() => import('containers/pages/Auth')),
+  path: '/(auth|registration)',
+  component: lazy(() => import('containers/pages/AuthReg')),
 }, {
   path: '*',
   component: lazy(() => import('containers/pages/Error404')),

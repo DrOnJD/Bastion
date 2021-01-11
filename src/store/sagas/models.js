@@ -11,6 +11,11 @@ const messageStatus = (statusCode) => {
   return 'warning';
 };
 
+function* errorHandler(model, { data, status }) {
+  yield put(actions.addMeta(model, { status: 'reject' }));
+  if (data?.message) yield put(actions.add(Notification, { message: data?.message, status: messageStatus(status) }));
+}
+
 
 function* getModel({ model, payload, meta }) {
   const api = new model.api();
@@ -18,16 +23,15 @@ function* getModel({ model, payload, meta }) {
     yield put(actions.addMeta(model, { status: 'pending' }));
     const { data: { data, message }, status } = yield api.get(payload);
 
-    yield put(actions.add(Notification, { message, status: messageStatus(status) }));
+    if (message) yield put(actions.add(Notification, { message, status: messageStatus(status) }));
 
     if (isArray(data)) {
       yield put(actions.addList(model, data, { ...meta, status: 'success' }));
     } else {
       yield put(actions.add(model, data, { ...meta, status: 'success' }));
     }
-  } catch ({ response: { data: { message }, status } }) {
-    yield put(actions.addMeta(model, { status: 'reject' }));
-    yield put(actions.add(Notification, { message, status: messageStatus(status) }));
+  } catch ({ response }) {
+    yield errorHandler(model, response);
   }
 }
 
@@ -37,16 +41,15 @@ function* postModel({ model, payload, meta }) {
     yield put(actions.addMeta(model, { status: 'pending' }));
     const { data: { data, message }, status } = yield api.post(payload);
 
-    yield put(actions.add(Notification, { message, status: messageStatus(status) }));
+    if (message) yield put(actions.add(Notification, { message, status: messageStatus(status) }));
 
     if (isArray(data)) {
       yield put(actions.addList(model, data, { ...meta, status: 'success' }));
     } else {
       yield put(actions.add(model, data, { ...meta, status: 'success' }));
     }
-  } catch ({ response: { data: { message }, status } }) {
-    yield put(actions.addMeta(model, { status: 'reject' }));
-    yield put(actions.add(Notification, { message, status: messageStatus(status) }));
+  } catch ({ response }) {
+    yield errorHandler(model, response);
   }
 }
 
@@ -56,7 +59,7 @@ function* deleteModel({ model }) {
     yield put(actions.addMeta(model, { status: 'pending' }));
     const { data: { message }, status } = yield api.delete();
 
-    yield put(actions.add(Notification, { message, status: messageStatus(status) }));
+    if (message) yield put(actions.add(Notification, { message, status: messageStatus(status) }));
 
     /* if (isArray(data)) {
       yield put(actions.addList(model, data, meta));
@@ -65,9 +68,8 @@ function* deleteModel({ model }) {
       yield put(actions.add(model, data, meta));
       yield put(actions.addMeta(model, { status: 'success' }));
     } */
-  } catch ({ response: { data: { message }, status } }) {
-    yield put(actions.addMeta(model, { status: 'reject' }));
-    yield put(actions.add(Notification, { message, status: messageStatus(status) }));
+  } catch ({ response }) {
+    yield errorHandler(model, response);
   }
 }
 
